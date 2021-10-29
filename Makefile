@@ -1,19 +1,13 @@
-# Flags Normais 
 CFLAGS= -Wall -O2
 
-#Flags para profiling 
-#CFLAGS= -Wall -O2 -pg  
+exec: stun.o example.o 
+	cc $(CFLAGS) -o Exec stun.o example.o 
 
-# Compiles
-exec: stun.o  
-	cc $(CFLAGS) -o Exec stun.o 
-
-# Clean
 clean:
-	rm *.o Exec profile gmon.out 
+	rm *.o Exec 
 
-# Files
-stun.o: stun.c
+example.o: example.c
+stun.o: stun.c stun.h
 
 
 
