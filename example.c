@@ -1,6 +1,6 @@
+#include <arpa/inet.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <arpa/inet.h>
 
 #include "stun.h"
 
@@ -10,7 +10,7 @@ int main(int argc, char **argv) {
     exit(1);
   }
 
-  stun_server_init("stun.l.google.com", 3478);
+  stun_client_init("stun.l.google.com", 3478);
 
   struct in_addr ipv4;
   bool r = get_public_ipv4(argv[1], &ipv4);
@@ -21,7 +21,7 @@ int main(int argc, char **argv) {
     printf("Error\n");
   }
 
-  stun_server_destroy();
+  stun_client_destroy();
 
   return 0;
 }

@@ -1,9 +1,9 @@
 #include <arpa/inet.h>
 #include <net/if.h>
+#include <netdb.h>
 #include <stdbool.h>
 #include <string.h>
 #include <unistd.h>
-#include <netdb.h>
 
 #include "stun.h"
 
@@ -38,7 +38,7 @@ struct xorHeader {
 static struct sockaddr_in servaddr;
 static int sockfd;
 
-bool stun_server_init(char *stun_server_ip, short stun_server_port) {
+bool stun_client_init(char *stun_server_ip, short stun_server_port) {
   struct timeval tv;
 
   // Create socket
@@ -61,13 +61,14 @@ bool stun_server_init(char *stun_server_ip, short stun_server_port) {
     // Reduce results to IPv4
     hints.ai_family = AF_INET;
 
-    if(getaddrinfo(stun_server_ip, NULL, &hints, &res))
+    if (getaddrinfo(stun_server_ip, NULL, &hints, &res))
       return false;
 
-    if(getnameinfo(res->ai_addr, res->ai_addrlen, host, sizeof(host), NULL, 0, NI_NUMERICHOST)) 
+    if (getnameinfo(res->ai_addr, res->ai_addrlen, host, sizeof(host), NULL, 0,
+                    NI_NUMERICHOST))
       return false;
 
-    if(inet_pton(AF_INET, host, &servaddr.sin_addr) != 1)
+    if (inet_pton(AF_INET, host, &servaddr.sin_addr) != 1)
       return false;
   }
 
@@ -81,7 +82,7 @@ bool stun_server_init(char *stun_server_ip, short stun_server_port) {
   return true;
 }
 
-void stun_server_destroy() { close(sockfd); }
+void stun_client_destroy() { close(sockfd); }
 
 bool get_public_ipv4(char *interface_name, struct in_addr *ipv4) {
   char buf[BUFFSIZE];
