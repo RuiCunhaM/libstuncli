@@ -5,7 +5,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#include "stun.h"
+#include <libstuncli.h>
 
 #define BUFFSIZE 1024
 

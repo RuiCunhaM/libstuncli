@@ -1,3 +1,6 @@
+#ifndef ___LIBSTUNCLI_H___
+#define ___LIBSTUNCLI_H___
+
 /**
  * @file stun.h
  *
@@ -31,3 +34,5 @@ void stun_client_destroy();
  * @return true on success or false if an error occurs
  */
 bool get_public_ipv4(char *interface_name, struct in_addr *ipv4);
+
+#endif
