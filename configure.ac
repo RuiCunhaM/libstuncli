@@ -47,5 +47,6 @@ AX_APPEND_COMPILE_FLAGS([-Wextra -Werror -pedantic])
 AC_CONFIG_FILES([Makefile
                  include/Makefile
                  include/libstuncli/Makefile
-                 src/Makefile])
+                 src/Makefile
+                 examples/Makefile])
 AC_OUTPUT
