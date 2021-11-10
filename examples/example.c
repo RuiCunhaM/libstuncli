@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "stun.h"
+#include <libstuncli/libstuncli.h>
 
 int main(int argc, char **argv) {
 
